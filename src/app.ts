@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { logger } from "utils/logger";
 import { morganConfig } from "middlewares/morgan";
+import { gameRouter } from "routes/game";
 
 export const startServer = () => {
 	const app = express();
@@ -17,6 +18,8 @@ export const startServer = () => {
 			message: "Welcome to the proto API",
 		});
 	});
+
+	app.use("/api/game", gameRouter);
 
 	app.listen(port, () => logger.info(`App running at port: ${port}`));
 };
